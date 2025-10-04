@@ -1,4 +1,4 @@
-function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlayerHand, computerHand, setWinner}) {
+function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlayerHand, computerHand, setWinner, dealt}) {
     function hit() {
         let nextCard = shuffledDeck[0]
         const restDeck = shuffledDeck.slice(1)
@@ -17,13 +17,22 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
         let continueComputerScore = 0
         let computerScore = 0
 
+        while (continueComputerScore < computerHandLength) {
+            const computerCardKey = Object.keys(computerHand)[continueComputerScore]
+            const computerCardValue = computerHand[computerCardKey]
+            computerScore += computerCardValue
+            continueComputerScore += 1
+        }
+
         while (continuePlayerScore < playerHandLength) {
             const playerCardKey = Object.keys(playerHand)[continuePlayerScore]
             const playerCardValue = playerHand[playerCardKey]
             playerScore += playerCardValue
             continuePlayerScore += 1
         }
-        if (playerScore < 21) {
+        if (playerScore < 21 && playerScore > computerScore) {
+            continueComputerScore = 0
+            computerScore = 0
             while (runComputer != 1) {
                 while (continueComputerScore < computerHandLength) {
                     const computerCardKey = Object.keys(computerHand)[continueComputerScore]
@@ -31,7 +40,7 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
                     computerScore += computerCardValue
                     continueComputerScore += 1
                 }
-                if (computerScore > 17) {
+                if (computerScore > 17 || playerScore <= computerScore) {
                     runComputer = 1
                 }
             }}
@@ -58,7 +67,7 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
             return (
                 setWinner('Player')
             )
-        }
+        }   
     }
 
     return (
