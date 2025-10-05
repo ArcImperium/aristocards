@@ -7,10 +7,9 @@ import Wager from './Wager.jsx'
 import deck from './assets/deck.json'
 
 function App() {
-  const coins = 100
+  const [coins, setCoins] = useState(100)
   const [bet, setBet] = useState(coins * 0.5)
   const [lockBet, setLockBet] = useState(false)
-  const [showWager, setShowWager] = useState(true)
 
   const [playerHand, setPlayerHand] = useState({})
   const [computerHand, setComputerHand] = useState({})
@@ -35,7 +34,7 @@ function App() {
     setComputerHand(newComputerHand)
     setShuffledDeck(newDeck)
 
-    setWinner('In Progess')
+    setWinner('In Progress')
   }
 
   const dealt = Object.keys(playerHand).length > 0
@@ -43,10 +42,13 @@ function App() {
   return (
     <>
     Coins: {coins}
-    <Wager coins={coins} bet={bet} setBet={setBet} lockBet={lockBet} showWager={showWager} setShowWager={setShowWager}/>
+    <Wager coins={coins} bet={bet} setBet={setBet} lockBet={lockBet}/>
     <div className='operators'>
-      <button className='operatorbutton' onClick={() => {dealHands(); setLockBet(true); setShowWager(false)}}>Deal</button>
-      {dealt && (<PlayerOption shuffledDeck={shuffledDeck} setShuffledDeck={setShuffledDeck} playerHand={playerHand} deck={deck} setPlayerHand={setPlayerHand} computerHand={computerHand} setWinner={setWinner}/>)}
+      <button className='operatorbutton' onClick={() => {dealHands(); setLockBet(true)}}>Deal</button>
+      {dealt && (<PlayerOption shuffledDeck={shuffledDeck} setShuffledDeck={setShuffledDeck} playerHand={playerHand} deck={deck} setPlayerHand={setPlayerHand} computerHand={computerHand} setWinner={setWinner} coins={coins} setCoins={setCoins} bet={bet}/>)}
+      {winner != 'In Progress' && (
+      <button className='operatorbutton' onClick={() => {setLockBet(false); setPlayerHand({}); setComputerHand({}); setWinner('In Progress')}}>Change Bet</button>
+      )}
     </div>
     {dealt && (<>
     <Computer computerHand={computerHand}/>

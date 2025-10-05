@@ -1,10 +1,11 @@
-function Wager({coins, bet, setBet, lockBet, setLockBet}) {
+function Wager({coins, bet, setBet, lockBet}) {
     return (
         <div>
             {!lockBet && (
-                <>
-                <input type="range" min="0" max="50" bet={bet} onChange={(e) => setBet(Number(e.target.value))}/>
-                </>
+                <div className='wager-container'>
+                <input className='wager' type="range" min="0" max={coins} bet={bet} onChange={(e) => setBet(Number(e.target.value))}/>
+                <br/> Bet: {bet}
+                </div>
             )}
         </div>
     )

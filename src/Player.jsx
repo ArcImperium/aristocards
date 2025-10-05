@@ -27,10 +27,10 @@ function Player({playerHand}) {
     }
 
     return (
-        <>
-        <h1>Player</h1>
-        {displayPlayerHand()}
-        </>
+        <div className='player'>
+            <h1>Player</h1>
+            {displayPlayerHand()}
+        </div>
     )
 }
 

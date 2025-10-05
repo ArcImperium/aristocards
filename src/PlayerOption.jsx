@@ -1,4 +1,4 @@
-function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlayerHand, computerHand, setWinner, dealt}) {
+function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlayerHand, computerHand, setWinner, coins, setCoins, bet}) {
     function hit() {
         let nextCard = shuffledDeck[0]
         const restDeck = shuffledDeck.slice(1)
@@ -30,9 +30,9 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
             playerScore += playerCardValue
             continuePlayerScore += 1
         }
-        if (playerScore < 21 && playerScore > computerScore) {
-            continueComputerScore = 0
-            computerScore = 0
+        continueComputerScore = 0
+        computerScore = 0
+        if (playerScore <= 21 && playerScore > computerScore) {
             while (runComputer != 1) {
                 while (continueComputerScore < computerHandLength) {
                     const computerCardKey = Object.keys(computerHand)[continueComputerScore]
@@ -49,21 +49,25 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
     }
     function calculateWinner(playerScore, computerScore) {
         if (playerScore > 21) {
+            setCoins(coins - bet)
             return (
                 setWinner('Dealer')
             )
         }
         else if (computerScore > 21) {
+            setCoins(coins + bet)
             return (
                 setWinner('Player')
             )
         }
         else if (playerScore <= computerScore) {
+            setCoins(coins - bet)
             return (
                 setWinner('Dealer')
             )
         }
         else if (playerScore > computerScore) {
+            setCoins(coins + bet)
             return (
                 setWinner('Player')
             )
