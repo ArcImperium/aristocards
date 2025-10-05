@@ -12,7 +12,6 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
         let continuePlayerScore = 0
         let playerScore = 0
 
-        let runComputer = 0
         const computerHandLength = Object.keys(computerHand).length
         let continueComputerScore = 0
         let computerScore = 0
@@ -30,20 +29,14 @@ function PlayerOption({shuffledDeck, setShuffledDeck, playerHand, deck, setPlaye
             playerScore += playerCardValue
             continuePlayerScore += 1
         }
-        continueComputerScore = 0
-        computerScore = 0
+
         if (playerScore <= 21 && playerScore > computerScore) {
-            while (runComputer != 1) {
-                while (continueComputerScore < computerHandLength) {
-                    const computerCardKey = Object.keys(computerHand)[continueComputerScore]
-                    const computerCardValue = computerHand[computerCardKey]
-                    computerScore += computerCardValue
-                    continueComputerScore += 1
-                }
-                if (computerScore > 17 || playerScore <= computerScore) {
-                    runComputer = 1
-                }
-            }}
+            while (computerScore < 17) {
+                const nextCard = shuffledDeck.shift()
+                computerHand[nextCard] = deck[nextCard]
+                computerScore += deck[nextCard]
+            }
+        }
         
         return calculateWinner(playerScore, computerScore)
     }
