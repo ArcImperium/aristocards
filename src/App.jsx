@@ -7,6 +7,8 @@ import Wager from './Wager.jsx'
 import deck from './assets/deck.json'
 
 function App() {
+  const [needHelp, setNeedHelp] = useState(false)
+
   const [coins, setCoins] = useState(100)
   const [bet, setBet] = useState(coins * 0.5)
   const [lockBet, setLockBet] = useState(false)
@@ -41,6 +43,17 @@ function App() {
 
   return (
     <>
+    <button className='help' onClick={() => setNeedHelp(true)}>?</button>
+    {needHelp && (
+      <div className='help-overlay'>
+        <div className='help-content'>
+          <h1>Help</h1>
+          <hr/>
+          <hr/>
+          <button className='operatorbutton' onClick={() => setNeedHelp(false)}>OK</button>
+        </div>
+      </div>
+    )}
     Coins: {coins}
     <Wager coins={coins} bet={bet} setBet={setBet} lockBet={lockBet}/>
     <div className='operators'>

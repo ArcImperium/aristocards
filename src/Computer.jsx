@@ -5,8 +5,14 @@ function Computer({computerHand}) {
     return(
         <div className='computer'>
             <h1>Dealer</h1>
-            {computerCardKey}
-            <br/>??
+            <div className='card-container'>
+                <div className='card'>
+                    {computerCardKey}
+                </div>
+                <div className='card'>
+                    ??
+                </div>
+            </div>
             <hr></hr>
             Score: {computerCardValue}
         </div>

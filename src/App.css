@@ -5,10 +5,6 @@
   text-align: center;
 }
 
-.card {
-  padding: 2em;
-}
-
 .operators {
   display: flex;
   justify-content: center;
@@ -20,7 +16,7 @@
 }
 
 .wager {
-  width: 250px;
+  width: 500px;
 }
 
 .wager-container {
@@ -29,6 +25,11 @@
   border: 5px solid black;
   margin: 10px;
   border-radius: 10px;
+}
+
+.wager-container:hover {
+  box-shadow: 0px 0px 10px darkblue;
+  transition: box-shadow 0.25s;
 }
 
 .player {
@@ -42,6 +43,7 @@
 
 .player:hover {
   box-shadow: 0px 0px 10px darkblue;
+  transition: box-shadow 0.25s;
 }
 
 .computer {
@@ -55,4 +57,64 @@
 
 .computer:hover {
   box-shadow: 0px 0px 10px darkblue;
+  transition: box-shadow 0.25s;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.card {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  border: 3px solid black;
+  background-color: white;
+  color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 10px darkblue;
+  transition: box-shadow 0.25s;
+}
+
+.help {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+
+.help:hover {
+  box-shadow: 0px 0px 10px darkblue;
+  transition: box-shadow 0.25s;
+}
+
+.help-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.help-content {
+  position: fixed;
+  top: 7.5%;
+  left: 7.5%;
+  height: 80%;
+  width: 80%;
+  padding: 10px;
+  border: 5px solid black;
+  background: #343434;
 }

@@ -9,27 +9,27 @@ function Player({playerHand}) {
             const playerCardKey = Object.keys(playerHand)[continueDisplayPlayerHand]
             const playerCardValue = playerHand[playerCardKey]
             playerHandDisplay.push(
-                <div key={playerCardKey}>
+                <div key={playerCardKey} className='card'>
                     {playerCardKey}
                 </div>
             )
             playerScore += playerCardValue
             continueDisplayPlayerHand += 1
         }
-        playerHandDisplay.push(
-            <div key={playerScore}>
-                <hr></hr>
-                Score: {playerScore}
-            </div>
-        )
 
-        return playerHandDisplay
+        return {playerHandDisplay, playerScore}
     }
+
+    const {playerHandDisplay, playerScore} = displayPlayerHand()
 
     return (
         <div className='player'>
             <h1>Player</h1>
-            {displayPlayerHand()}
+            <div className='card-container'>
+                {playerHandDisplay}
+            </div>
+            <hr/>
+            Score: {playerScore}
         </div>
     )
 }
