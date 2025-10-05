@@ -1,3 +1,14 @@
+There is a help button that displays most of the following.
+Make a bet and click "deal" to start the game.
+Cards are notated as "number""suit", regular deck of 52 playing cards.
+Hit to draw a card, stand to end your turn.
+The computer will take its turn (doesn't show the cards the computer deals).
+The computer will hit if it is below 17 and below player score.
+Regular Blackjack rules declares a winner. 
+You can change your bet or deal again.
+Manage your coin balance and bet.
+Also, the gmae will crash sometimes (I don't know why, it does it randomly), if so you can refresh (which also resets coin balance).
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
